@@ -1,9 +1,10 @@
-function signup(event){
+async function signup(event){
     event.preventDefault();
     let name = event.target.name.value;
     let email = event.target.email.value;
     let password = event.target.password.value;
     let phonenumber = event.target.phonenumber.value;
+    try{
     let myObj = {
         name,
         email,
@@ -11,14 +12,16 @@ function signup(event){
         phonenumber
     }
 
-    axios.post('http://localhost:3000/user/signup',myObj )
-     .then((response)=>{
+    const response =  await axios.post('http://localhost:3000/signup',myObj )
+     if(response.data.success == true){
         alert('signedUp Successfully')
         console.log(response) 
-     })
-     .catch((err)=>{
+     }
+     else{
+      console.log('email already exist')
+     }
+   }catch(err){
         document.body.innerHTML = document.body.innerHTML + "<h4> Something went wrong </h4>"
         console.log(err)
-     })
-
-    }
+   }
+}
