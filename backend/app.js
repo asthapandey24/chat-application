@@ -3,6 +3,7 @@ const app=express();
 const bodyparser=require('body-parser');
 const sequelize=require('./util/Databaseconnection');
 const userRouter = require('./router/user')
+const msgRouter = require('./router/chatmsg')
 const path=require('path');
 
 const cors=require('cors')
@@ -11,6 +12,7 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
 
 const usertable = require('./models/Usertable')
+const msgtable = require('./models/msgtable')
 
 
 
@@ -18,9 +20,11 @@ const usertable = require('./models/Usertable')
 
 
 app.use(userRouter);
+app.use(msgRouter);
 
 
-
+usertable.hasMany(msgtable);
+msgtable.belongsTo(usertable)
 
 sequelize.sync()
 .then(()=>{

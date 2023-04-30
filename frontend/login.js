@@ -7,9 +7,12 @@
     }
 
      const response = await axios.post('http://localhost:3000/login',logindetails)
-     console.log(response.data)
+     console.log(response.data.userdata)
      if(response.data.success === true){
         alert('user loggedin successfully')
+         localStorage.setItem("token",response.data.userdata);
+
+        window.location = 'chatapp.html'
      }
      else{
         console.log(response.data.msg)

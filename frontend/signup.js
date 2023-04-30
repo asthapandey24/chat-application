@@ -16,6 +16,7 @@ async function signup(event){
      if(response.data.success == true){
         alert('signedUp Successfully')
         console.log(response) 
+        window.location = 'login.html'
      }
      else{
       console.log('email already exist')
