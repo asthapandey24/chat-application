@@ -174,10 +174,12 @@ function unauthorized(error)
 
 
 
+function create(){
 
+ 
+  window.location.href = 'group.html';
 
-
-
+}
 
 
 

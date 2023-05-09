@@ -7,12 +7,28 @@
 
 body {
     height: 100vh;
-	background-color: #f8f8f8;
+	background-color: dodgerblue;
     display: flex;
     justify-content: center;
     align-items: center;
 	
 }
+.left-panel{
+    width: 200px;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: dodgerblue;
+}
+#create-group-button{
+    margin: 20px;
+	padding: 10px;
+	font-size: 18px;
+    background-color: peru;
+}
+
+
 
  .container {
    width: 450px;
@@ -29,7 +45,6 @@ body {
 }
 .body{
     flex: 1;
-    color: white;
     background-color: rgba(0,0,0,0.7);
     padding: 20px 30px;
 }

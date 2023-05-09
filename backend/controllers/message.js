@@ -1,6 +1,7 @@
 const sequelize=require('sequelize');
 const userdetail= require('../models/Usertable')
 const msgtable=require('../models/msgtable');
+const { Op } = require('sequelize'); 
 
 
 
@@ -62,6 +63,29 @@ exports.getNewData=(async (req,res)=>{
   }
  
 })
+
+
+exports.UserDetail = ( async(req,res)=>{
+  try {
+    const userDetail= await userdetail.findAll({
+      where: {
+        id: {
+          [Op.ne]: `${req.user.id}`
+        }
+      }
+    });
+
+     res.send({success:true,userDetail:userDetail});
+  } catch (error) {
+    console.log(error);
+  }
+  
+});
+
+
+
+
+
 
 
 
