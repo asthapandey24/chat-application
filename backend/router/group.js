@@ -13,5 +13,6 @@ router.put('/RemoveUserFromGroup', groupchat.RemoveUserFromGroup);
 router.get('/fetchGroupAdmin', authentication.authentication, groupchat.fetchGroupAdmin)
 router.put('/MakeAdminToUser', groupchat.MakeAdminToUser)
 router.get('/checkAdmin',authentication.authentication, groupchat.UserAdmin)
+router.put('/ChangeGroupName', groupchat.ChangeGroupName);
 
 module.exports = router;

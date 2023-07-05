@@ -53,7 +53,7 @@ const groupName = await grouptable.findAll({
     model: usergroup,
     attributes: [],
     where: {
-      userdetailId: `${req.user.id}`
+      userdetailId: `${req.user.id}` ///////
     },
     required: true
   }]
@@ -88,14 +88,14 @@ exports.AddGroupchatMessage=(async (req,res)=>{
 
 exports.fetchGroupMessage=( async(req,res)=>{
   console.log("i am fetch new message");
-   console.log(req.query.groupid);
+   console.log(req.query.groupid); /////
   //  const 
     const lastmessageno=parseInt(req.query.lastmessageid) || -1
    
     try {
       const userchat= await messagetable.findAll({
        where:{
-        id: { [Op.gt]:lastmessageno},
+        id: { [Op.gt]:lastmessageno},      ///////
          grouptableId:req.query.groupid,
        },
        include: [{
@@ -112,32 +112,32 @@ exports.fetchGroupMessage=( async(req,res)=>{
     
 });
 
-exports.fetchGroupMessage=( async(req,res)=>{
-  console.log("i am fetch new message");
-   console.log(req.query.groupid);
-  //  const 
-    const lastmessageno=parseInt(req.query.lastmessageid) || -1
+// exports.fetchGroupMessage=( async(req,res)=>{
+//   console.log("i am fetch new message");
+//    console.log(req.query.groupid);
+//   //  const 
+//     const lastmessageno=parseInt(req.query.lastmessageid) || -1
    
-    try {
-      const userchat= await messagetable.findAll({
-       where:{
-        id: { [Op.gt]:lastmessageno},
-         grouptableId:req.query.groupid,
-        // id: { [Op.gt]:req.query.lastmessageid}
-       },
-       include: [{
-        model: usertable,
-        attributes: ['username']
-      }]
-      })      
+//     try {
+//       const userchat= await messagetable.findAll({
+//        where:{
+//         id: { [Op.gt]:lastmessageno},
+//          grouptableId:req.query.groupid,
+//         // id: { [Op.gt]:req.query.lastmessageid}
+//        },
+//        include: [{
+//         model: usertable,
+//         attributes: ['username']
+//       }]
+//       })      
 
-       res.send({success:true,userchat:userchat});
-    } catch (error) {
-      // console.log(error);
-    }
+//        res.send({success:true,userchat:userchat});
+//     } catch (error) {
+//       // console.log(error);
+//     }
     
     
-});
+// });
 
 exports.AddNewUserToGroup=(async (req,res)=>{
   console.log()
@@ -237,4 +237,20 @@ exports.UserAdmin=(async (req,res) => {
   } catch (error) {
       console.log(error);
   }
+})
+
+
+exports.ChangeGroupName = (async (req, res)=>{
+  console.log(req.query.param2);
+  try{
+   const changes = await grouptable.update({groupName: req.query.param2},
+    {where: {id: req.query.param1}
+  })
+
+   console.log(changes);
+ res.send({success: true, msg: 'successfully updated'})
+}
+catch(error){
+  console.log(error)
+}
 })

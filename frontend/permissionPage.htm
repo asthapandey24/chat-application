@@ -26,6 +26,7 @@
         <div class="form-group">
           <label for="groupname">Group Name:</label>
           <input type="text" class="form-control" id="groupname" name="groupname">
+          <button type="submit" class="btn btn-success" id="change-btn">Changes</button>
         </div>
         <div class="form-group">
           <label for="userlist">User List:</label>
@@ -49,7 +50,6 @@
         <button type="button" class="btn btn-danger" id="remove-btn">Remove Users</button>
         <button type="button" class="btn btn-warning" id="make-admin">Admin</button>
         <button type="submit" class="btn btn-success" id="save-btn">Save Changes</button>
-        <button type="button" class="btn btn-secondary" id="user-remove-btn">Remove User</button>
       </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -138,7 +138,7 @@ const userList = document.querySelector('#userlist');
         
       })
 
-
+    
 
 
       // // fetch user list data from server and populate userlist div
@@ -249,6 +249,27 @@ const userList = document.querySelector('#userlist');
       })
 
 
+      const form = document.querySelector('form');
+      const changeBtn = document.querySelector('#change-btn');
+
+     form.addEventListener('submit', async (event) => {
+     event.preventDefault(); // Prevent the form from submitting
+
+  // Get the new group name value from the input field
+      const newGroupName = document.querySelector('#groupname').value.trim();
+
+  // Make the PUT request to update the group name
+     try {
+    const groupId = localStorage.getItem('groupid');
+     const newchanges = await axios.put(`http://localhost:3000/ChangeGroupName/?param1=${groupId}&param2=${newGroupName}`);
+    console.log('Group name updated successfully');
+    console.log(newchanges);
+    // Handle the success case, e.g., show a success message to the user
+  } catch (error) {
+    console.error('Error updating group name:', error);
+    // Handle the error case, e.g., show an error message to the user
+  }
+});
 
 
 

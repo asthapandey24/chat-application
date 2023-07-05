@@ -16,8 +16,7 @@ const usertable = require('./models/Usertable')
 const msgtable = require('./models/msgtable')
 const grouptable=require('./models/grouptable');
 const usergrouptbble=require('./models/usergroup');
-
-
+const archivedtable=require('./models/archivechat');
 
 
 
@@ -39,11 +38,11 @@ usertable.belongsToMany(grouptable,{ through: usergrouptbble });
 grouptable.belongsToMany(usertable, { through: usergrouptbble });
 
 
-grouptable.hasMany(usergrouptbble);
-usertable.hasMany(usergrouptbble);
+grouptable.hasMany(usergrouptbble);         
+usertable.hasMany(usergrouptbble);         
 
 
-sequelize.sync()
+sequelize.sync({force: false})
 .then(()=>{
     app.listen(3000);
 }).catch(err=>{

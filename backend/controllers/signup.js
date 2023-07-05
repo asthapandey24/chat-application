@@ -1,7 +1,9 @@
 const Usertable = require('../models/Usertable')
 const bcrypt=require('bcrypt');
 var jwt = require('jsonwebtoken');
+const sequelize=require('sequelize');
 const usergrouptable=require('../models/usergroup')
+const {Op} = require('sequelize');
 
 
 

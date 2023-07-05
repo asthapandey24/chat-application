@@ -12,7 +12,7 @@
         alert('user loggedin successfully')
          localStorage.setItem("token",response.data.userdata);
 
-        window.location = 'chatapp.html'
+        window.location = 'group.html'
      }
      else{
         console.log(response.data.msg)
